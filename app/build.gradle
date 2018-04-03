@@ -38,7 +38,6 @@ dependencies {
     implementation deps.support.appCompatV7
     implementation deps.support.cardView
     implementation deps.support.design
-    implementation deps.support.palette
 
     implementation deps.libs.archViewModel
     implementation deps.libs.archLiveData
