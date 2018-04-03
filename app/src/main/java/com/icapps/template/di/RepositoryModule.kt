@@ -16,7 +16,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideBeersRepository(exampleService: ExampleService): ExampleRepository {
+    fun provideExampleRepository(exampleService: ExampleService): ExampleRepository {
         return DefaultExampleRepository(exampleService)
     }
 

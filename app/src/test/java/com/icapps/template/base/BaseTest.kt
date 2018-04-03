@@ -17,7 +17,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 abstract class BaseTest {
 
-    protected lateinit var beersRepository: ExampleRepository
+    protected lateinit var exampleRepository: ExampleRepository
 
     @Suppress("unused")
     @get:Rule
@@ -25,7 +25,7 @@ abstract class BaseTest {
 
     @Before
     open fun setup() {
-        beersRepository = spy(DummyExampleRepository())
+        exampleRepository = spy(DummyExampleRepository())
     }
 
 }

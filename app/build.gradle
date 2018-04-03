@@ -8,7 +8,7 @@ android {
     compileSdkVersion config.buildConfig.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.icapps.icappsbeers"
+        applicationId "com.icapps.template"
         minSdkVersion config.buildConfig.minSdkVersion
         targetSdkVersion config.buildConfig.targetSdkVersion
         versionCode 1

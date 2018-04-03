@@ -1,9 +1,8 @@
 package com.icapps.template.repository
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import com.icapps.template.model.Beer
-import com.icapps.template.model.arch.Resource
+import com.icapps.template.arch.ObservableFuture
+import com.icapps.template.model.Example
+import com.icapps.template.model.exception.ServiceException
 
 /**
  * @author maartenvangiel
@@ -11,33 +10,26 @@ import com.icapps.template.model.arch.Resource
  */
 class DummyExampleRepository : ExampleRepository {
 
-    override fun getBeers(): LiveData<Resource<List<Beer>>> {
-        val result = MutableLiveData<Resource<List<Beer>>>()
-        result.value = Resource.loading()
-
+    override fun getExample(id: Long): ObservableFuture<Example> {
+        val result = ObservableFuture<Example>()
         Thread {
             Thread.sleep(100)
-            result.value = Resource.success(TestData.beers)
+            val example = TestData.examples.find { it.id == id }
+            if (example == null) {
+                result.onResult(ServiceException("Example with id $id not found", null, null, null))
+            } else {
+                result.onResult(example)
+            }
         }.start()
-
         return result
     }
 
-    override fun getBeer(input: Long): LiveData<Resource<Beer?>> {
-        val result = MutableLiveData<Resource<Beer?>>()
-        result.value = Resource.loading()
-
+    override fun getExamples(): ObservableFuture<List<Example>> {
+        val result = ObservableFuture<List<Example>>()
         Thread {
             Thread.sleep(100)
-            val beer = TestData.beers.find { it.id == input }
-            if (beer == null) {
-                result.value = Resource.error("Failed to find beer with id $input")
-            } else {
-                result.value = Resource.success(beer)
-            }
-
+            result.onResult(TestData.examples)
         }.start()
-
         return result
     }
 
