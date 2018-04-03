@@ -1,7 +1,7 @@
 def versions = [
         buildtools        : '3.1.0',
         icappsGradlePlugin: '1.0.6',
-        kotlin            : '1.2.30',
+        kotlin            : '1.2.31',
         detekt            : '1.0.0.RC6-4',
         arch              : '1.1.1',
         androidSupport    : '27.1.0',
@@ -11,13 +11,21 @@ def versions = [
         retrofit          : '2.4.0',
         okhttp            : '3.10.0',
         niddler           : '0.10.2',
-        dagger            : '2.11',
+        dagger            : '2.15',
         moshi             : '1.5.0',
         picasso           : '2.71828',
-        mockitoKotlin     : '1.5.0'
+        mockitoKotlin     : '1.5.0',
+        versionsPlugin    : '0.17.0'
 ]
 
 ext.versions = versions
+
+def gradlePlugins = [
+        buildTools        : "com.android.tools.build:gradle:${versions.buildtools}",
+        kotlin            : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
+        iCappsGradlePlugin: "com.icapps.build.gradle:plugin:${versions.icappsGradlePlugin}",
+        versions          : "com.github.ben-manes:gradle-versions-plugin:${versions.versionsPlugin}"
+]
 
 def kotlin = [
         kotlinStdLib: "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
@@ -59,8 +67,9 @@ def libs = [
 ]
 
 ext.deps = [
-        "kotlin" : kotlin,
-        "support": support,
-        "testing": testing,
-        "libs"   : libs
+        "gradlePlugins": gradlePlugins,
+        "kotlin"       : kotlin,
+        "support"      : support,
+        "testing"      : testing,
+        "libs"         : libs
 ]

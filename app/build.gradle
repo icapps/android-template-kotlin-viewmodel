@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'icapps-build-gradle-plugin'
+apply plugin: 'com.github.ben-manes.versions'
 
 android {
     compileSdkVersion config.buildConfig.compileSdkVersion
