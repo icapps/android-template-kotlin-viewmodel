@@ -16,6 +16,7 @@
 - Kotlin
 - Databinding
 - Custom ObservableFuture implementation
+- Dependency update plugin
 
 ### ViewModel architecture
 
