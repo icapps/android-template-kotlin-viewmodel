@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'icapps-build-gradle-plugin'
+
+android {
+    compileSdkVersion config.buildConfig.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.icapps.icappsbeers"
+        minSdkVersion config.buildConfig.minSdkVersion
+        targetSdkVersion config.buildConfig.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin.kotlinStdLib
+
+    implementation deps.support.appCompatV7
+    implementation deps.support.cardView
+    implementation deps.support.design
+    implementation deps.support.palette
+
+    implementation deps.libs.archViewModel
+    implementation deps.libs.archLiveData
+    implementation deps.libs.archExtensions
+    implementation deps.libs.archLiveDataTesting
+    implementation deps.libs.okhttp
+    implementation deps.libs.retrofit
+    implementation deps.libs.dagger
+    implementation deps.libs.daggerAndroid
+    implementation deps.libs.daggerAndroidSupport
+    implementation deps.libs.moshi
+    implementation deps.libs.moshiConverter
+    implementation deps.libs.picasso
+
+    debugImplementation deps.libs.niddler
+    releaseImplementation deps.libs.niddlerNoOp
+
+    testImplementation deps.testing.junit
+    testImplementation deps.testing.mockitoKotlin
+
+    androidTestImplementation deps.testing.androidTestRunner
+    androidTestImplementation deps.testing.espresso
+
+    kapt deps.libs.daggerCompiler
+    kapt deps.libs.daggerAndroidProcessor
+    kapt deps.libs.archAnotationProcessor
+}
+
+iCappsBuildConfig {
+    detekt {
+        version = versions.detekt
+    }
+}
