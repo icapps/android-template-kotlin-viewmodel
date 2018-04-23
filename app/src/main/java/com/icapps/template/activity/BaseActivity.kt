@@ -31,12 +31,8 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         viewModels.forEach { it.saveInstanceState(outState) }
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onStop() {
-        super.onStop()
         viewModels.clear()
+        super.onSaveInstanceState(outState)
     }
 
 }
