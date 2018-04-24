@@ -56,15 +56,18 @@ dependencies {
     debugImplementation deps.libs.niddler
     releaseImplementation deps.libs.niddlerNoOp
 
+    kapt deps.libs.daggerCompiler
+    kapt deps.libs.daggerAndroidProcessor
+    kapt deps.libs.archAnotationProcessor
+
     testImplementation deps.testing.junit
     testImplementation deps.testing.mockitoKotlin
 
     androidTestImplementation deps.testing.androidTestRunner
     androidTestImplementation deps.testing.espresso
 
-    kapt deps.libs.daggerCompiler
-    kapt deps.libs.daggerAndroidProcessor
-    kapt deps.libs.archAnotationProcessor
+    kaptTest deps.libs.daggerCompiler
+    kaptAndroidTest deps.libs.daggerCompiler
 }
 
 iCappsBuildConfig {

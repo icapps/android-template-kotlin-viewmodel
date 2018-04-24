@@ -12,6 +12,7 @@ import com.nhaarman.mockito_kotlin.verify
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.timeout
+import javax.inject.Inject
 
 /**
  * @author maartenvangiel
@@ -19,14 +20,18 @@ import org.mockito.Mockito.timeout
  */
 class ExampleOverviewTest : BaseTest() {
 
-    private lateinit var viewModel: ExampleViewModel
-
     @Mock
     private lateinit var observer: Observer<Resource<List<Example>>>
 
+    @Inject
+    lateinit var viewModel: ExampleViewModel
+
+    override fun inject() {
+        testComponent.inject(this)
+    }
+
     override fun setup() {
         super.setup()
-        viewModel = ExampleViewModel(exampleRepository)
         viewModel.init()
     }
 

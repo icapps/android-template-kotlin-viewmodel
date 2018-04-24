@@ -12,11 +12,11 @@ import javax.inject.Singleton
  * @version 1
  */
 @Module
-class RepositoryModule {
+open class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideExampleRepository(exampleService: ExampleService): ExampleRepository {
+    open fun provideExampleRepository(exampleService: ExampleService): ExampleRepository {
         return DefaultExampleRepository(exampleService)
     }
 
