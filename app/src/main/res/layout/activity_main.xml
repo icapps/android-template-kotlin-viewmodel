@@ -2,13 +2,22 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ProgressBar
             android:id="@+id/loading_indicator"
             android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btn_new_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New activity" />
 
     </LinearLayout>
 

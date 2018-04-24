@@ -1,6 +1,7 @@
 package com.icapps.template.activity
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.View
@@ -22,7 +23,6 @@ class MainActivity : BaseActivity() {
         binding = R.layout.activity_main.bindContentView(this)
 
         viewModel = getOrCreateViewModel(savedInstanceState)
-        viewModel.init()
         viewModel.examples.observe(this, Observer<Resource<List<Example>>> {
             if (it == null) return@Observer
 
@@ -40,6 +40,15 @@ class MainActivity : BaseActivity() {
                 }
             }
         })
+
+        binding.btnNewActivity.setOnClickListener {
+            startActivity(Intent(this, TestActivity::class.java))
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.init()
     }
 
 }
