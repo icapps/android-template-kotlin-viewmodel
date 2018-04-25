@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/icapps-kotlin-template.iml" filepath="$PROJECT_DIR$/icapps-kotlin-template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mockingj/mockingj.iml" filepath="$PROJECT_DIR$/mockingj/mockingj.iml" />
     </modules>
   </component>
 </project>

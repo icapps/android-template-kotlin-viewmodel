@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "response": {
+    "id": 2,
+    "value": "Item number two"
+  }
+}

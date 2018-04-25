@@ -1,4 +1,4 @@
-package com.icapps.template.webservice
+package com.icapps.template.service
 
 import com.icapps.template.model.Example
 import retrofit2.Call
@@ -11,10 +11,10 @@ import retrofit2.http.Path
  */
 interface ExampleService {
 
-    @GET("example/{id}")
+    @GET("examples/{id}")
     fun getExample(@Path("id") id: Long): Call<Example>
 
-    @GET("example")
+    @GET("examples")
     fun getExamples(): Call<List<Example>>
 
 }

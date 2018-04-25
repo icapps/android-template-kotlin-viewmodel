@@ -3,7 +3,7 @@ package com.icapps.template.repository
 import com.icapps.template.arch.ObservableFuture
 import com.icapps.template.arch.toDispatching
 import com.icapps.template.model.Example
-import com.icapps.template.webservice.ExampleService
+import com.icapps.template.service.ExampleService
 
 /**
  * @author maartenvangiel

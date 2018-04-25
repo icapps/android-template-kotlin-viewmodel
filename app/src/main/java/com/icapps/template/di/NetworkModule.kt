@@ -3,7 +3,7 @@ package com.icapps.template.di
 import android.app.Application
 import com.icapps.niddler.core.Niddler
 import com.icapps.niddler.interceptor.okhttp.NiddlerOkHttpInterceptor
-import com.icapps.template.webservice.ExampleService
+import com.icapps.template.service.ExampleService
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides

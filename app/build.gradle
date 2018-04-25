@@ -62,6 +62,7 @@ dependencies {
 
     testImplementation deps.testing.junit
     testImplementation deps.testing.mockitoKotlin
+    testImplementation deps.testing.mockingJ
 
     androidTestImplementation deps.testing.androidTestRunner
     androidTestImplementation deps.testing.espresso

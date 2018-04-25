@@ -1,0 +1,19 @@
+{
+  "status": 200,
+  "response": {
+    "items": [
+      {
+        "id": 1,
+        "value": "Item number one"
+      },
+      {
+        "id": 2,
+        "value": "Item number two"
+      },
+      {
+        "id": 3,
+        "value": "Third item"
+      }
+    ]
+  }
+}
