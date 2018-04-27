@@ -14,7 +14,7 @@ import javax.inject.Inject
 abstract class BaseFragment : DaggerFragment() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     protected val viewModels = mutableListOf<BaseViewModel>()
 

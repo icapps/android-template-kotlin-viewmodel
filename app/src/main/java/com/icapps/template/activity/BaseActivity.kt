@@ -14,7 +14,7 @@ import javax.inject.Inject
 abstract class BaseActivity : DaggerAppCompatActivity() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     protected val viewModels = mutableListOf<BaseViewModel>()
 
