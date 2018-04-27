@@ -1,0 +1,13 @@
+{
+  "responseCode": 200,
+  "responseBody": [
+    {
+      "id": 1,
+      "value": "First item"
+    },
+    {
+      "id": 2,
+      "value": "Second item"
+    }
+  ]
+}

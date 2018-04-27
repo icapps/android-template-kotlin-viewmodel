@@ -1,6 +1,6 @@
 package com.icapps.template.di
 
-import com.icapps.template.TestEnvironment
+import com.icapps.mockingj.MockingJ
 import com.icapps.template.service.ExampleService
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -35,7 +35,7 @@ class TestNetworkModule {
     fun provideRetrofit(moshi: Moshi, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
-                .baseUrl(TestEnvironment.baseUrl ?: throw IllegalStateException("No valid baseURL available in testing environment"))
+                .baseUrl(MockingJ.baseUrl ?: throw IllegalStateException("No valid baseURL available in testing environment"))
                 .client(okHttpClient)
                 .build()
     }

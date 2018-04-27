@@ -19,8 +19,9 @@ class ExampleViewModel @Inject constructor(private val exampleRepository: Exampl
     private var examplesCall: ObservableFuture<*>? = null
 
     fun init() {
-        examples.value = Resource.loading()
+        if(!isCleanInstance) return
 
+        examples.value = Resource.loading()
         examplesCall?.cancel()
         val call = exampleRepository.getExamples() onSuccess {
             examples.value = Resource.success(it)

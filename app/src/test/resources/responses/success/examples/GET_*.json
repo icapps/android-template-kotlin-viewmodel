@@ -1,0 +1,7 @@
+{
+  "responseCode": 200,
+  "responseBody": {
+    "id": 1000,
+    "value": "Item value"
+  }
+}

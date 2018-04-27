@@ -20,6 +20,15 @@ class Resource<out T>(val status: Status, val data: T? = null, val message: Stri
         }
     }
 
+    val isError: Boolean
+        get() = status == Status.ERROR
+
+    val isLoading: Boolean
+        get() = status == Status.LOADING
+
+    val isSuccess: Boolean
+        get() = status == Status.SUCCESS
+
     override fun toString(): String {
         return "[$status] data = $data, message = $message, throwable = $throwable"
     }

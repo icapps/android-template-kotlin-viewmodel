@@ -1,6 +1,7 @@
 package com.icapps.template
 
 import android.arch.lifecycle.Observer
+import com.icapps.mockingj.junit.MockResponses
 import com.icapps.template.base.BaseNetworkMockedTest
 import com.icapps.template.model.Example
 import com.icapps.template.model.arch.Resource
@@ -33,7 +34,9 @@ class ExampleOverviewTest : BaseNetworkMockedTest() {
     fun testSuccessfulLoad() {
         viewModel.init()
         viewModel.examples.observeForever(observer)
+
         assert(viewModel.examples.value?.status == Status.LOADING)
+
         verify(observer, timeout(1000)).onChanged(argThat {
             status == Status.SUCCESS &&
                     data?.get(0)?.id == 1L &&
@@ -41,6 +44,19 @@ class ExampleOverviewTest : BaseNetworkMockedTest() {
                     data?.get(1)?.id == 2L &&
                     data?.get(1)?.value == "Second item" &&
                     data?.size == 2
+        })
+    }
+
+    @Test
+    @MockResponses(overrideResponseDirectory = "responses/failure")
+    fun testFailureResponse() {
+        viewModel.init()
+        viewModel.examples.observeForever(observer)
+
+        assert(viewModel.examples.value?.status == Status.LOADING)
+
+        verify(observer, timeout(1000)).onChanged(argThat {
+            status == Status.ERROR
         })
     }
 
