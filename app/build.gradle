@@ -34,41 +34,30 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.kotlin.kotlinStdLib
 
-    implementation deps.support.appCompatV7
-    implementation deps.support.cardView
-    implementation deps.support.design
+    deps.implementation.each { name, dep ->
+        implementation dep
+    }
 
-    implementation deps.libs.archViewModel
-    implementation deps.libs.archLiveData
-    implementation deps.libs.archExtensions
-    implementation deps.libs.archLiveDataTesting
-    implementation deps.libs.okhttp
-    implementation deps.libs.retrofit
-    implementation deps.libs.dagger
-    implementation deps.libs.daggerAndroid
-    implementation deps.libs.daggerAndroidSupport
-    implementation deps.libs.moshi
-    implementation deps.libs.moshiConverter
-    implementation deps.libs.picasso
+    deps.debugImplementation.each { name, dep ->
+        debugImplementation dep
+    }
 
-    debugImplementation deps.libs.niddler
-    releaseImplementation deps.libs.niddlerNoOp
+    deps.releaseImplementation.each { name, dep ->
+        releaseImplementation dep
+    }
 
-    kapt deps.libs.daggerCompiler
-    kapt deps.libs.daggerAndroidProcessor
-    kapt deps.libs.archAnotationProcessor
+    deps.annotationProcessors.each { name, dep ->
+        kapt dep
+    }
 
-    testImplementation deps.testing.junit
-    testImplementation deps.testing.mockitoKotlin
-    testImplementation deps.testing.mockingJ
+    deps.testing.each { name, dep ->
+        testImplementation dep
+        androidTestImplementation dep
+    }
 
-    androidTestImplementation deps.testing.androidTestRunner
-    androidTestImplementation deps.testing.espresso
-
-    kaptTest deps.libs.daggerCompiler
-    kaptAndroidTest deps.libs.daggerCompiler
+    kaptTest deps.annotationProcessors.daggerCompiler
+    kaptAndroidTest deps.annotationProcessors.daggerCompiler
 }
 
 iCappsBuildConfig {

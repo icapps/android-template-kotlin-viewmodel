@@ -28,17 +28,6 @@ def gradlePlugins = [
         versions          : "com.github.ben-manes:gradle-versions-plugin:${versions.versionsPlugin}"
 ]
 
-def kotlin = [
-        kotlinStdLib: "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-]
-
-def support = [
-        appCompatV7 : "com.android.support:appcompat-v7:${versions.androidSupport}",
-        cardView    : "com.android.support:cardview-v7:${versions.androidSupport}",
-        recyclerView: "com.android.support:recyclerview-v7:${versions.androidSupport}",
-        design      : "com.android.support:design:${versions.androidSupport}"
-]
-
 def testing = [
         junit            : "junit:junit:${versions.junit}",
         mockitoKotlin    : "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}",
@@ -47,31 +36,46 @@ def testing = [
         mockingJ         : "com.github.maartenvang:MockingJ:${versions.mockingJ}"
 ]
 
-def libs = [
-        archViewModel         : "android.arch.lifecycle:viewmodel:${versions.arch}",
-        archLiveData          : "android.arch.lifecycle:livedata:${versions.arch}",
+def annotationProcessors = [
         archAnotationProcessor: "android.arch.lifecycle:compiler:${versions.arch}",
-        archExtensions        : "android.arch.lifecycle:extensions:${versions.arch}",
-        archLiveDataTesting   : "android.arch.core:core-testing:${versions.arch}",
-        retrofit              : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
-        okhttp                : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
-        daggerCompiler        : "com.google.dagger:dagger-compiler:${versions.dagger}",
         daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${versions.dagger}",
-        dagger                : "com.google.dagger:dagger:${versions.dagger}",
-        daggerAndroid         : "com.google.dagger:dagger-android:${versions.dagger}",
-        daggerAndroidSupport  : "com.google.dagger:dagger-android-support:${versions.dagger}",
-        moshi                 : "com.squareup.moshi:moshi:${versions.moshi}",
-        moshiKotlin           : "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
-        moshiConverter        : "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
-        picasso               : "com.squareup.picasso:picasso:${versions.picasso}",
-        niddler               : "com.icapps.niddler:niddler:${versions.niddler}",
-        niddlerNoOp           : "com.icapps.niddler:niddler-noop:${versions.niddler}"
+        daggerCompiler        : "com.google.dagger:dagger-compiler:${versions.dagger}",
+]
+
+def implementation = [
+        appCompatV7         : "com.android.support:appcompat-v7:${versions.androidSupport}",
+        cardView            : "com.android.support:cardview-v7:${versions.androidSupport}",
+        recyclerView        : "com.android.support:recyclerview-v7:${versions.androidSupport}",
+        design              : "com.android.support:design:${versions.androidSupport}",
+        archViewModel       : "android.arch.lifecycle:viewmodel:${versions.arch}",
+        archLiveData        : "android.arch.lifecycle:livedata:${versions.arch}",
+        archExtensions      : "android.arch.lifecycle:extensions:${versions.arch}",
+        archLiveDataTesting : "android.arch.core:core-testing:${versions.arch}",
+        retrofit            : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+        okhttp              : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+        dagger              : "com.google.dagger:dagger:${versions.dagger}",
+        daggerAndroid       : "com.google.dagger:dagger-android:${versions.dagger}",
+        daggerAndroidSupport: "com.google.dagger:dagger-android-support:${versions.dagger}",
+        moshi               : "com.squareup.moshi:moshi:${versions.moshi}",
+        moshiKotlin         : "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
+        moshiConverter      : "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
+        picasso             : "com.squareup.picasso:picasso:${versions.picasso}",
+        kotlinStdLib        : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+]
+
+def debugImplementation = [
+        niddlerNoOp: "com.icapps.niddler:niddler-noop:${versions.niddler}"
+]
+
+def releaseImplementation = [
+        niddler: "com.icapps.niddler:niddler:${versions.niddler}"
 ]
 
 ext.deps = [
-        "gradlePlugins": gradlePlugins,
-        "kotlin"       : kotlin,
-        "support"      : support,
-        "testing"      : testing,
-        "libs"         : libs
+        "implementation"       : implementation,
+        "debugImplementation"  : debugImplementation,
+        "releaseImplementation": releaseImplementation,
+        "gradlePlugins"        : gradlePlugins,
+        "testing"              : testing,
+        "annotationProcessors" : annotationProcessors
 ]
