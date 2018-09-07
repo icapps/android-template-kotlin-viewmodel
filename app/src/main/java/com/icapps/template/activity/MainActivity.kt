@@ -29,7 +29,8 @@ class MainActivity : BaseActivity() {
             when (it.status) {
                 Status.ERROR -> {
                     binding.loadingIndicator.visibility = View.GONE
-                    Snackbar.make(findViewById(android.R.id.content), it.message ?: "Something went wrong", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(findViewById(android.R.id.content), it.message
+                            ?: "Something went wrong", Snackbar.LENGTH_LONG).show()
                 }
                 Status.LOADING -> {
                     binding.loadingIndicator.visibility = View.VISIBLE

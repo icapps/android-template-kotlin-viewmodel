@@ -24,7 +24,6 @@ class ExampleInstrumentedTest {
     @Test
     fun testMainActivity() {
         val appContext = InstrumentationRegistry.getTargetContext()
-
     }
 
 }

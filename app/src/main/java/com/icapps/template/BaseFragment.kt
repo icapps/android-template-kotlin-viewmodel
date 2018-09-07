@@ -3,9 +3,10 @@ package com.icapps.template
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import com.icapps.template.arch.BaseViewModel
+import com.icapps.architecture.arch.BaseViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
+import kotlin.reflect.KClass
 
 /**
  * @author maartenvangiel

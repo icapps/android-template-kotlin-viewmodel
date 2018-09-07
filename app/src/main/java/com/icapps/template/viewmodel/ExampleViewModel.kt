@@ -1,8 +1,9 @@
 package com.icapps.template.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
-import com.icapps.template.arch.BaseViewModel
-import com.icapps.template.arch.ObservableFuture
+import com.icapps.architecture.arch.BaseViewModel
+import com.icapps.architecture.arch.ObservableFuture
+import com.icapps.architecture.arch.onCaller
 import com.icapps.template.model.Example
 import com.icapps.template.model.arch.Resource
 import com.icapps.template.repository.ExampleRepository
@@ -19,20 +20,18 @@ class ExampleViewModel @Inject constructor(private val exampleRepository: Exampl
     private var examplesCall: ObservableFuture<*>? = null
 
     fun init() {
-        if(!isCleanInstance) return
+        if (!isCleanInstance) return
 
         examples.value = Resource.loading()
         examplesCall?.cancel()
-        val call = exampleRepository.getExamples() onSuccess {
+        examplesCall = exampleRepository.getExamples() onSuccess {
             examples.value = Resource.success(it)
         } onFailure {
             examples.value = Resource.error("Failed to load examples: ${it.message}", it)
-        }
-        examplesCall = call.observe()
+        } observe onCaller
     }
 
     override fun onCleared() {
         examplesCall?.cancel()
     }
-
 }
