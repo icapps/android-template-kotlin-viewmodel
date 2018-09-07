@@ -1,6 +1,6 @@
 package com.icapps.template.repository
 
-import com.icapps.template.arch.ObservableFuture
+import com.icapps.architecture.arch.ObservableFuture
 import com.icapps.template.model.Example
 
 /**

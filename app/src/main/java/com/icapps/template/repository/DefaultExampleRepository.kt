@@ -1,7 +1,8 @@
 package com.icapps.template.repository
 
-import com.icapps.template.arch.ObservableFuture
-import com.icapps.template.arch.toDispatching
+import com.icapps.architecture.arch.ConcreteMutableObservableFuture
+import com.icapps.architecture.arch.ObservableFuture
+import com.icapps.architecture.repository.BaseRepository
 import com.icapps.template.model.Example
 import com.icapps.template.service.ExampleService
 
@@ -18,18 +19,18 @@ class DefaultExampleRepository(private val exampleService: ExampleService) : Bas
         return if (cacheResult == null) {
             makeCall(exampleService.getExample(id))
         } else {
-            ObservableFuture<Example>().apply { onResult(cacheResult) }
+            ConcreteMutableObservableFuture<Example>().apply { onResult(cacheResult) }
         }
     }
 
     override fun getExamples(): ObservableFuture<List<Example>> {
         return if (examplesCache.isEmpty())
-            makeCall(exampleService.getExamples()).peekSuccess({
+            makeCall(exampleService.getExamples()).peek {
                 examplesCache.clear()
                 examplesCache.addAll(it)
-            }).toDispatching()
+            }
         else
-            ObservableFuture<List<Example>>().apply { onResult(examplesCache) }
+            ConcreteMutableObservableFuture<List<Example>>().apply { onResult(examplesCache) }
     }
 
 }

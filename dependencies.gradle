@@ -3,7 +3,8 @@ def versions = [
         icappsGradlePlugin: '1.0.6',
         kotlin            : '1.2.40',
         detekt            : '1.0.0.RC6-4',
-        arch              : '1.1.1',
+        androidArch       : '0.1.22',
+        archComponents    : '1.1.1',
         androidSupport    : '27.1.0',
         junit             : '4.12',
         androidTestRunner : '1.0.1',
@@ -33,24 +34,25 @@ def testing = [
         mockitoKotlin    : "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}",
         androidTestRunner: "com.android.support.test:runner:${versions.androidTestRunner}",
         espresso         : "com.android.support.test.espresso:espresso-core:${versions.espresso}",
-        mockingJ         : "com.github.maartenvang:MockingJ:${versions.mockingJ}"
+        mockingJ         : "com.github.maartenvang:MockingJ:${versions.mockingJ}",
+        archLiveDataTesting : "android.arch.core:core-testing:${versions.archComponents}"
 ]
 
 def annotationProcessors = [
-        archAnotationProcessor: "android.arch.lifecycle:compiler:${versions.arch}",
+        archAnotationProcessor: "android.arch.lifecycle:compiler:${versions.archComponents}",
         daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${versions.dagger}",
         daggerCompiler        : "com.google.dagger:dagger-compiler:${versions.dagger}",
 ]
 
 def implementation = [
+        androidArch         : "com.icapps.android:architecture:${versions.androidArch}",
+        archViewModel        : "android.arch.lifecycle:viewmodel:${versions.archComponents}",
+        archLiveData         : "android.arch.lifecycle:livedata:${versions.archComponents}",
+        archExtensions       : "android.arch.lifecycle:extensions:${versions.archComponents}",
         appCompatV7         : "com.android.support:appcompat-v7:${versions.androidSupport}",
         cardView            : "com.android.support:cardview-v7:${versions.androidSupport}",
         recyclerView        : "com.android.support:recyclerview-v7:${versions.androidSupport}",
         design              : "com.android.support:design:${versions.androidSupport}",
-        archViewModel       : "android.arch.lifecycle:viewmodel:${versions.arch}",
-        archLiveData        : "android.arch.lifecycle:livedata:${versions.arch}",
-        archExtensions      : "android.arch.lifecycle:extensions:${versions.arch}",
-        archLiveDataTesting : "android.arch.core:core-testing:${versions.arch}",
         retrofit            : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
         okhttp              : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
         dagger              : "com.google.dagger:dagger:${versions.dagger}",

@@ -1,6 +1,6 @@
 package com.icapps.template.util.ext
 
-import com.icapps.template.arch.DirectObservableFuture
+import com.icapps.architecture.arch.ConcreteMutableObservableFuture
 import com.icapps.template.model.exception.ServiceException
 import okhttp3.Headers
 import okhttp3.ResponseBody
@@ -13,17 +13,17 @@ import java.lang.reflect.Type
  * @author Nicola Verbeeck
  * @version 1
  */
-inline fun <reified T> Call<T>.wrapToFuture(noinline headerInspector: ((Headers, T) -> T)? = null): DirectObservableFuture<T> {
+inline fun <reified T> Call<T>.wrapToFuture(noinline headerInspector: ((Headers, T) -> T)? = null): ConcreteMutableObservableFuture<T> {
     return wrapToFuture(T::class.java, headerInspector)
 }
 
 @Suppress("UNCHECKED_CAST")
-fun <T> Call<T>.wrapToFuture(type: Type, headerInspector: ((Headers, T) -> T)? = null): DirectObservableFuture<T> {
+fun <T> Call<T>.wrapToFuture(type: Type, headerInspector: ((Headers, T) -> T)? = null): ConcreteMutableObservableFuture<T> {
     val isEmptyBody = type == Unit::class.java
     val isResponseBody = type == ResponseBody::class.java
 
     val self = this
-    val future = object : DirectObservableFuture<T>() {
+    val future = object : ConcreteMutableObservableFuture<T>() {
         override fun cancel() {
             super.cancel()
             self.cancel()

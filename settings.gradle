@@ -1,1 +1,1 @@
-include ':app', ':mockingj'
+include ':app'

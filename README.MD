@@ -1,4 +1,4 @@
-# iCapps Kotlin project template with LiveData, ViewModels, Dagger2 and more
+# icapps Kotlin project template with LiveData, ViewModels, Dagger2 and more
 
 ### Used libraries:
 - AppCompatv7
