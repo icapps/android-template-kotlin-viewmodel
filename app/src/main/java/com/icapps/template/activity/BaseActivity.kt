@@ -1,6 +1,5 @@
 package com.icapps.template.activity
 
-import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import com.icapps.architecture.arch.BaseViewModel
 import com.icapps.architecture.controller.ViewModelLifecycleController
@@ -13,9 +12,6 @@ import kotlin.reflect.KClass
  * @version 1
  */
 abstract class BaseActivity : DaggerAppCompatActivity() {
-
-    @Inject
-    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var viewModelLifecycleController: ViewModelLifecycleController
