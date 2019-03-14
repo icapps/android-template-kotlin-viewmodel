@@ -16,19 +16,17 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelLifecycleController: ViewModelLifecycleController
 
-    protected val viewModels = mutableMapOf<KClass<*>, BaseViewModel>()
-
     protected inline fun <reified T : BaseViewModel> getOrCreateViewModel(savedInstanceState: Bundle? = null): T {
         return viewModelLifecycleController.getOrCreateViewModel(this, savedInstanceState)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        viewModels.forEach { it.value.saveInstanceState(outState) }
+        viewModelLifecycleController.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
     }
 
     override fun onDestroy() {
-        viewModels.clear()
+        viewModelLifecycleController.onDestroy()
         super.onDestroy()
     }
 

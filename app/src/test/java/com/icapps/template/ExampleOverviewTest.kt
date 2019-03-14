@@ -4,8 +4,6 @@ import android.arch.lifecycle.Observer
 import com.icapps.mockingj.junit.MockResponses
 import com.icapps.template.base.BaseNetworkMockedTest
 import com.icapps.template.model.Example
-import com.icapps.template.model.arch.Resource
-import com.icapps.template.model.arch.Status
 import com.icapps.template.viewmodel.ExampleViewModel
 import com.nhaarman.mockito_kotlin.argThat
 import com.nhaarman.mockito_kotlin.verify

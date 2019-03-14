@@ -1,11 +1,11 @@
 package com.icapps.template.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Lifecycle
+import android.databinding.ObservableBoolean
+import android.databinding.ObservableField
 import com.icapps.architecture.arch.BaseViewModel
-import com.icapps.architecture.arch.ObservableFuture
-import com.icapps.architecture.arch.onCaller
+import com.icapps.architecture.utils.logging.logError
 import com.icapps.template.model.Example
-import com.icapps.template.model.arch.Resource
 import com.icapps.template.repository.ExampleRepository
 import javax.inject.Inject
 
@@ -15,23 +15,24 @@ import javax.inject.Inject
  */
 class ExampleViewModel @Inject constructor(private val exampleRepository: ExampleRepository) : BaseViewModel() {
 
-    val examples = MutableLiveData<Resource<List<Example>>>()
+    val loading = ObservableBoolean()
+    val examples = ObservableField<List<Example>>()
+    val errorMessage = ObservableField<String>()
 
-    private var examplesCall: ObservableFuture<*>? = null
+    fun init(lifecycle: Lifecycle) {
+        if (!examples.get().isNullOrEmpty()) return
 
-    fun init() {
-        if (!isCleanInstance) return
-
-        examples.value = Resource.loading()
-        examplesCall?.cancel()
-        examplesCall = exampleRepository.getExamples() onSuccess {
-            examples.value = Resource.success(it)
-        } onFailure {
-            examples.value = Resource.error("Failed to load examples: ${it.message}", it)
-        } observe onCaller
+        loading.set(true)
+        exampleRepository.getExamples() onSuccess {
+            examples.set(it)
+            loading.set(false)
+            errorMessage.set(null)
+        } onFailure { exception ->
+            logError("Failed to load examples: ", exception)
+            examples.set(null)
+            loading.set(false)
+            errorMessage.set(exception.message)
+        } observe lifecycle
     }
 
-    override fun onCleared() {
-        examplesCall?.cancel()
-    }
 }

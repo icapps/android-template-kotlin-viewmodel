@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.icapps.template.viewmodel.ExampleViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,7 +21,8 @@
             android:id="@+id/loading_indicator"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="24dp"
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}" />
 
         <Button
             android:id="@+id/btn_new_activity"

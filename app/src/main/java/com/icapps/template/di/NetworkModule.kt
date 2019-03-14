@@ -1,6 +1,7 @@
 package com.icapps.template.di
 
 import android.app.Application
+import com.icapps.niddler.core.AndroidNiddler
 import com.icapps.niddler.core.Niddler
 import com.icapps.niddler.interceptor.okhttp.NiddlerOkHttpInterceptor
 import com.icapps.template.service.ExampleService
@@ -22,16 +23,12 @@ import javax.inject.Singleton
 @Module
 class NetworkModule(private val baseUrl: String) {
 
-    companion object {
-        private const val NIDDLER_PORT = 6555
-    }
-
     @Provides
     @Singleton
     fun provideNiddler(application: Application): Niddler {
-        val niddler = Niddler.Builder()
-                .setPort(NIDDLER_PORT)
-                .setNiddlerInformation(Niddler.NiddlerServerInfo.fromApplication(application))
+        val niddler = AndroidNiddler.Builder()
+                .setPort(0)
+                .setNiddlerInformation(AndroidNiddler.fromApplication(application))
                 .build()
         niddler.attachToApplication(application)
         return niddler
@@ -41,7 +38,7 @@ class NetworkModule(private val baseUrl: String) {
     @Singleton
     @Named("NiddlerInterceptor")
     fun provideNiddlerInterceptor(niddler: Niddler): Interceptor {
-        return NiddlerOkHttpInterceptor(niddler)
+        return NiddlerOkHttpInterceptor(niddler, "NiddlerInterceptor")
     }
 
     @Provides
