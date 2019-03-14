@@ -5,7 +5,6 @@ import com.icapps.architecture.arch.BaseViewModel
 import com.icapps.architecture.controller.ViewModelLifecycleController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
-import kotlin.reflect.KClass
 
 /**
  * @author maartenvangiel

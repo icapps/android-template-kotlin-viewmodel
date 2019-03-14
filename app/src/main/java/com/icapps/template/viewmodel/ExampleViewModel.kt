@@ -1,8 +1,8 @@
 package com.icapps.template.viewmodel
 
-import android.arch.lifecycle.Lifecycle
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
+import androidx.lifecycle.Lifecycle
 import com.icapps.architecture.arch.BaseViewModel
 import com.icapps.architecture.utils.logging.logError
 import com.icapps.template.model.Example

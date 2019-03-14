@@ -2,7 +2,7 @@ package com.icapps.template.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import com.icapps.architecture.utils.ext.bindContentView
 import com.icapps.architecture.utils.ext.observe
 import com.icapps.template.R
