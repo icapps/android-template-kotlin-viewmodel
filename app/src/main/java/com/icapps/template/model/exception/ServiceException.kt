@@ -30,7 +30,7 @@ class ServiceException : IOException {
             append(super.message)
             response?.let {
                 append(" - ").append(it.code())
-                append(" - url: ").append(it.request()?.url())
+                append(" - url: ").append(it.request().url())
                 append(" - cache: ").append(it.cacheControl())
             }
         }

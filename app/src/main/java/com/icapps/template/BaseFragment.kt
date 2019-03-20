@@ -5,7 +5,6 @@ import com.icapps.architecture.arch.BaseViewModel
 import com.icapps.architecture.controller.ViewModelLifecycleController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
-import kotlin.reflect.KClass
 
 /**
  * @author maartenvangiel
@@ -15,8 +14,6 @@ abstract class BaseFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelLifecycleController: ViewModelLifecycleController
-
-    protected val viewModels = mutableMapOf<KClass<*>, BaseViewModel>()
 
     protected inline fun <reified T : BaseViewModel> getOrCreateViewModel(savedInstanceState: Bundle? = null): T {
         return viewModelLifecycleController.getOrCreateViewModel(this, savedInstanceState)
@@ -29,12 +26,12 @@ abstract class BaseFragment : DaggerFragment() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        viewModels.forEach { it.value.saveInstanceState(outState) }
+        viewModelLifecycleController.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
     }
 
     override fun onDestroy() {
-        viewModels.clear()
+        viewModelLifecycleController.onDestroy()
         super.onDestroy()
     }
 

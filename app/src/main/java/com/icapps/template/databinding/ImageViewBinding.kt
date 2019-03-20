@@ -1,8 +1,8 @@
 package com.icapps.template.databinding
 
-import android.databinding.BindingAdapter
 import android.view.View
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 
 /**

@@ -1,7 +1,7 @@
 package com.icapps.template.di
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.icapps.architecture.di.ViewModelFactory
 import com.icapps.architecture.di.ViewModelKey
 import com.icapps.template.viewmodel.ExampleViewModel

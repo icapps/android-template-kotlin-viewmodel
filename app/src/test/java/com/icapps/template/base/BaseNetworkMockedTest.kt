@@ -1,9 +1,8 @@
 package com.icapps.template.base
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.icapps.mockingj.junit.MockingJTestRule
-import com.icapps.template.di.DaggerTestComponent
 import com.icapps.template.di.TestComponent
 import com.icapps.template.di.TestNetworkModule
 import com.icapps.template.di.TestRepositoryModule

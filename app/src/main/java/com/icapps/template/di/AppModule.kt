@@ -28,4 +28,5 @@ class AppModule(private val app: TemplateApplication) {
     fun provideViewModelLifecycleController(factory: ViewModelFactory): ViewModelLifecycleController {
         return ViewModelLifecycleController(factory)
     }
+
 }
