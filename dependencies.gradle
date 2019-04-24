@@ -1,5 +1,5 @@
 def versions = [
-        buildtools        : '3.5.0-alpha07',
+        buildtools        : '3.5.0-alpha12',
         icappsGradlePlugin: '1.0.6',
         kotlin            : '1.3.30',
         detekt            : '1.0.0.RC14',
