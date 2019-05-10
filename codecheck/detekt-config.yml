@@ -1,4 +1,4 @@
-autoCorrect: true
+autoCorrect: false
 failFast: false
 
 build:
@@ -46,11 +46,11 @@ empty-blocks:
 complexity:
   active: true
   LongMethod:
-    threshold: 20
+    threshold: 30
   LongParameterList:
     threshold: 5
   LargeClass:
-    threshold: 150
+    threshold: 300
   ComplexMethod:
     threshold: 10
   TooManyFunctions:
@@ -80,43 +80,30 @@ formatting:
     indentSize: 4
   ConsecutiveBlankLines:
     active: true
-    autoCorrect: true
   MultipleSpaces:
     active: true
-    autoCorrect: true
   SpacingAfterComma:
     active: true
-    autoCorrect: true
   SpacingAfterKeyword:
     active: true
-    autoCorrect: true
   SpacingAroundColon:
     active: true
-    autoCorrect: true
   SpacingAroundCurlyBraces:
     active: true
-    autoCorrect: true
   SpacingAroundOperator:
     active: true
-    autoCorrect: true
   TrailingSpaces:
     active: true
-    autoCorrect: true
   UnusedImports:
     active: true
-    autoCorrect: true
   OptionalSemicolon:
     active: true
-    autoCorrect: true
   OptionalUnit:
     active: true
-    autoCorrect: true
   ExpressionBodySyntax:
     active: false
-    autoCorrect: true
   ExpressionBodySyntaxLineBreaks:
     active: false
-    autoCorrect: true
 
 style:
   active: true
@@ -138,7 +125,7 @@ style:
     active: false
   ReturnCount:
     active: true
-    max: 4
+    max: 6
   ForbiddenComment:
     active: true
     values: 'STOPSHIP'
@@ -150,15 +137,13 @@ style:
     ignoreAnnotation: false
   SafeCast:
     active: true
+  ExpressionBodySyntax:
+    active: false
+
+naming:
+  active: true
+  FunctionMaxLength:
+    active: false
 
 comments:
   active: false
-
-# *experimental feature*
-# Migration rules can be defined in the same config file or a new one
-migration:
-  active: true
-  imports:
-    # your.package.Class: new.package.or.Class
-    # for example:
-    # io.gitlab.arturbosch.detekt.api.Rule: io.gitlab.arturbosch.detekt.rule.Rule

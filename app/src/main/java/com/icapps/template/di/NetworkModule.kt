@@ -15,7 +15,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
-
 /**
  * @author maartenvangiel
  * @version 1

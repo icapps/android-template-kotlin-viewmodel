@@ -62,6 +62,12 @@ dependencies {
 
 iCappsBuildConfig {
     detekt {
-        version = versions.detekt
+        input = files("src/main/java")                                  // Sources folder
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"                  // Files that match filter will not be tested
+        config = files("$projectDir/../codecheck/detekt-config.yml")    // Detekt config that will be used
     }
+}
+
+tasks.register("detektCheck") {
+    dependsOn tasks.named("detekt")
 }
