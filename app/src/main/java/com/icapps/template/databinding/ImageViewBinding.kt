@@ -21,10 +21,11 @@ object ImageViewBinding {
         val builder = Picasso.get()
                 .load(url)
 
-        if (placeHolderResource == View.NO_ID)
+        if (placeHolderResource == View.NO_ID) {
             builder.placeholder(imageView.drawable)
-        else if (placeHolderResource != 0)
+        } else if (placeHolderResource != 0) {
             builder.placeholder(placeHolderResource)
+        }
 
         imageView.setImageDrawable(null)
         builder.into(imageView)
@@ -32,10 +33,11 @@ object ImageViewBinding {
 
     @JvmStatic
     private fun loadPlaceholder(imageView: ImageView, placeHolderResource: Int) {
-        if (placeHolderResource == 0 || placeHolderResource == View.NO_ID)
+        if (placeHolderResource == 0 || placeHolderResource == View.NO_ID) {
             imageView.setImageDrawable(null)
-        else
+        } else {
             imageView.setImageResource(placeHolderResource)
+        }
     }
 
 }

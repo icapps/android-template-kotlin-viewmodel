@@ -36,18 +36,18 @@ fun <T> Call<T>.wrapToFuture(type: Type, headerInspector: ((Headers, T) -> T)? =
                 if (isEmptyBody) {
                     future.onResult(Unit as T)
                 } else if (isResponseBody) {
-                    val response = if (headerInspector != null)
+                    val response = if (headerInspector != null) {
                         headerInspector(p1.headers(), p1.body() as T)
-                    else
+                    } else {
                         p1.body() as T
+                    }
 
                     future.onResult(response)
                 } else {
                     val body = p1.body()
                     if (body == null) {
                         val errorBody = p1.errorBody()?.string()
-                        future.onResult(
-                                ServiceException("Empty response where a body was expected", errorBody, p1.raw(), p0?.request()))
+                        future.onResult(ServiceException("Empty response where a body was expected", errorBody, p1.raw(), p0?.request()))
                     } else {
                         future.onResult(body)
                     }
