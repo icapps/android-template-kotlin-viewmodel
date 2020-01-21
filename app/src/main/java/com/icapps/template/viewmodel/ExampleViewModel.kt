@@ -5,7 +5,9 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.Lifecycle
 import com.icapps.architecture.arch.BaseViewModel
 import com.icapps.architecture.utils.logging.logError
-import com.icapps.template.model.Example
+import com.icapps.template.R
+import com.icapps.template.di.ResourcesWrapper
+import com.icapps.template.model.api.Example
 import com.icapps.template.repository.ExampleRepository
 import javax.inject.Inject
 
@@ -19,7 +21,7 @@ class ExampleViewModel @Inject constructor(private val exampleRepository: Exampl
     val examples = ObservableField<List<Example>>()
     val errorMessage = ObservableField<String>()
 
-    fun init(lifecycle: Lifecycle) {
+    fun init(lifecycle: Lifecycle, resourcesWrapper: ResourcesWrapper) {
         if (!examples.get().isNullOrEmpty()) return
 
         loading.set(true)
@@ -31,7 +33,7 @@ class ExampleViewModel @Inject constructor(private val exampleRepository: Exampl
             logError("Failed to load examples: ", exception)
             examples.set(null)
             loading.set(false)
-            errorMessage.set(exception.message)
+            errorMessage.set(resourcesWrapper.getString(R.string.general_label_error))
         } observe lifecycle
     }
 

@@ -1,6 +1,6 @@
 package com.icapps.template.service
 
-import com.icapps.template.model.Example
+import com.icapps.template.model.api.Example
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

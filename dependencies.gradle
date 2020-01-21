@@ -1,25 +1,24 @@
 def versions = [
-        buildtools        : '3.5.0-beta01',
-        icappsGradlePlugin: '1.1.0',
-        kotlin            : '1.3.30',
-        detekt            : '1.0.0.RC14',
-        androidArch       : '0.3.4-x',
-        archComponents    : '2.1.0-alpha04',
-        androidSupport    : '1.1.0-alpha04',
-        material          : '1.1.0-alpha05',
+        buildtools        : '3.5.3',
+        icappsGradlePlugin: '3.0.1',
+        kotlin            : '1.3.60',
+        detekt            : '1.4.0',
+        androidArch       : '0.3.9-x',
+        androidArchTesting: '2.1.0',
+        archComponents    : '2.2.0-rc03',
+        appcompatV7       : '1.2.0-alpha01',
+        recyclerView      : '1.2.0-alpha01',
         cardView          : '1.0.0',
-        junit             : '4.13-beta-2',
-        androidTestRunner : '1.0.2',
-        espresso          : '3.0.1',
-        retrofit          : '2.5.0',
+        constraintLayout  : '2.0.0-beta4',
+        material          : '1.2.0-alpha03',
+        espresso          : '3.3.0-alpha03',
+        retrofit          : '2.7.1',
         okhttp            : '3.12.1', // OkHttp 3.12.1 is the last version that works on API <21. Bump version if desired
-        niddler           : '1.0.0-beta3',
-        dagger            : '2.22.1',
-        moshi             : '1.8.0',
+        niddler           : '1.0.1',
+        dagger            : '2.25.4',
+        moshi             : '1.9.2',
         picasso           : '2.71828',
-        mockitoKotlin     : '1.6.0',
-        mockingJ          : '0.0.1-alpha2',
-        versionsPlugin    : '0.21.0'
+        versionsPlugin    : '0.21.0',
 ]
 
 ext.versions = versions
@@ -28,22 +27,14 @@ def gradlePlugins = [
         buildTools        : "com.android.tools.build:gradle:${versions.buildtools}",
         kotlin            : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
         iCappsGradlePlugin: "com.icapps.build.gradle:plugin:${versions.icappsGradlePlugin}",
-        versions          : "com.github.ben-manes:gradle-versions-plugin:${versions.versionsPlugin}"
-]
-
-def testing = [
-        junit              : "junit:junit:${versions.junit}",
-        mockitoKotlin      : "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}",
-        androidTestRunner  : "com.android.support.test:runner:${versions.androidTestRunner}",
-        espresso           : "com.android.support.test.espresso:espresso-core:${versions.espresso}",
-        mockingJ           : "com.github.maartenvang:MockingJ:${versions.mockingJ}",
-        archLiveDataTesting: "android.arch.core:core-testing:${versions.archComponents}"
+        versions          : "com.github.ben-manes:gradle-versions-plugin:${versions.versionsPlugin}",
 ]
 
 def annotationProcessors = [
         archAnotationProcessor: "android.arch.lifecycle:compiler:${versions.archComponents}",
         daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${versions.dagger}",
         daggerCompiler        : "com.google.dagger:dagger-compiler:${versions.dagger}",
+        moshiCodeGen          : "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}",
 ]
 
 def implementation = [
@@ -51,9 +42,10 @@ def implementation = [
         archViewModel       : "androidx.lifecycle:lifecycle-viewmodel:${versions.archComponents}",
         archLiveData        : "androidx.lifecycle:lifecycle-livedata:${versions.archComponents}",
         archExtensions      : "androidx.lifecycle:lifecycle-extensions:${versions.archComponents}",
-        appCompatV7         : "androidx.appcompat:appcompat:${versions.androidSupport}",
+        appCompatV7         : "androidx.appcompat:appcompat:${versions.appcompatV7}",
         cardView            : "androidx.cardview:cardview:${versions.cardView}",
-        recyclerView        : "androidx.recyclerview:recyclerview:${versions.androidSupport}",
+        recyclerView        : "androidx.recyclerview:recyclerview:${versions.recyclerView}",
+        constraintLayout    : "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}",
         design              : "com.google.android.material:material:${versions.material}",
         retrofit            : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
         okhttp              : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
@@ -64,15 +56,15 @@ def implementation = [
         moshiKotlin         : "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
         moshiConverter      : "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
         picasso             : "com.squareup.picasso:picasso:${versions.picasso}",
-        kotlinStdLib        : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+        kotlinStdLib        : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}",
 ]
 
 def debugImplementation = [
-        niddler: "com.icapps.niddler:niddler:${versions.niddler}"
+        niddler: "com.icapps.niddler:niddler:${versions.niddler}",
 ]
 
 def releaseImplementation = [
-        niddlerNoOp: "com.icapps.niddler:niddler-noop:${versions.niddler}"
+        niddlerNoOp: "com.icapps.niddler:niddler-noop:${versions.niddler}",
 ]
 
 ext.deps = [
@@ -80,6 +72,5 @@ ext.deps = [
         "debugImplementation"  : debugImplementation,
         "releaseImplementation": releaseImplementation,
         "gradlePlugins"        : gradlePlugins,
-        "testing"              : testing,
-        "annotationProcessors" : annotationProcessors
+        "annotationProcessors" : annotationProcessors,
 ]

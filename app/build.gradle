@@ -27,8 +27,9 @@ android {
         enabled = true
     }
 
-    testOptions {
-        unitTests.returnDefaultValues = true
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -51,13 +52,7 @@ dependencies {
         kapt dep
     }
 
-    deps.testing.each { name, dep ->
-        testImplementation dep
-        androidTestImplementation dep
-    }
-
     kaptTest deps.annotationProcessors.daggerCompiler
-    kaptAndroidTest deps.annotationProcessors.daggerCompiler
 }
 
 iCappsBuildConfig {
@@ -65,6 +60,10 @@ iCappsBuildConfig {
         input = files("src/main/java")                                  // Sources folder
         filters = ".*test.*,.*/resources/.*,.*/tmp/.*"                  // Files that match filter will not be tested
         config = files("$projectDir/../codecheck/detekt-config.yml")    // Detekt config that will be used
+    }
+    appCenter {
+        apiKey = 'xxx'
+        appOwner = 'icapps'
     }
 }
 

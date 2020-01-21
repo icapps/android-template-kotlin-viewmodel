@@ -12,7 +12,7 @@ import javax.inject.Singleton
  * @version 1
  */
 @Singleton
-@Component(modules = [AppModule::class, AndroidSupportInjectionModule::class, ActivityBuilder::class, NetworkModule::class, RepositoryModule::class, ViewModelModule::class])
+@Component(modules = [AppModule::class, AndroidSupportInjectionModule::class, ActivityBuilder::class, NetworkModule::class, ViewModelModule::class])
 interface AppComponent : AndroidInjector<TemplateApplication> {
 
     fun inject(exampleViewModel: ExampleViewModel)

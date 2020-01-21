@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">icapps Template app</string>
+    <string name="general_label_error">Something went wrong. Please try again.</string>
 </resources>

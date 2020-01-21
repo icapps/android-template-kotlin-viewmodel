@@ -5,13 +5,13 @@ import com.icapps.template.di.DaggerAppComponent
 import com.icapps.template.di.NetworkModule
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
-import dagger.android.HasActivityInjector
+import dagger.android.HasAndroidInjector
 
 /**
  * @author maartenvangiel
  * @version 1
  */
-class TemplateApplication : DaggerApplication(), HasActivityInjector {
+class TemplateApplication : DaggerApplication(), HasAndroidInjector {
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         val appModule = AppModule(this)

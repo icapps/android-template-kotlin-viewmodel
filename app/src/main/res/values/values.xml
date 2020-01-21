@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="base_url">https://icapps-beers.herokuapp.com/</string> <!--This endpoint is no longer supported. Tests will show you the app works-->
+    <string name="base_url">https://example.com/api/v1/</string>
 </resources>
