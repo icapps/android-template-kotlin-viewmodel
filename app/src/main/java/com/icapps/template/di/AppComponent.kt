@@ -1,10 +1,11 @@
 package com.icapps.template.di
 
 import com.icapps.template.TemplateApplication
-import com.icapps.template.viewmodel.ExampleViewModel
+import com.icapps.template.generated.GeneratedAndroidInjectedModule
+import com.icapps.template.generated.GeneratedViewModelModule
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 /**
@@ -12,9 +13,12 @@ import javax.inject.Singleton
  * @version 1
  */
 @Singleton
-@Component(modules = [AppModule::class, AndroidSupportInjectionModule::class, ActivityBuilder::class, NetworkModule::class, ViewModelModule::class])
-interface AppComponent : AndroidInjector<TemplateApplication> {
-
-    fun inject(exampleViewModel: ExampleViewModel)
-
-}
+@Component(modules = [
+    AppModule::class,
+    NetworkModule::class,
+    AndroidInjectionModule::class,
+    ViewModelFactoryModule::class,
+    GeneratedAndroidInjectedModule::class,
+    GeneratedViewModelModule::class
+])
+interface AppComponent : AndroidInjector<TemplateApplication>

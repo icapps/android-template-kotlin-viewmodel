@@ -2,12 +2,14 @@ package com.icapps.template.activity
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
+import com.icapps.architecture.annotation.AndroidInjected
 import com.icapps.architecture.utils.ext.bindContentView
 import com.icapps.architecture.utils.ext.observe
 import com.icapps.template.R
 import com.icapps.template.databinding.ActivityMainBinding
 import com.icapps.template.viewmodel.ExampleViewModel
 
+@AndroidInjected
 class MainActivity : BaseActivity() {
 
     private lateinit var viewModel: ExampleViewModel

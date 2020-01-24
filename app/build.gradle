@@ -33,6 +33,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -51,8 +55,6 @@ dependencies {
     deps.annotationProcessors.each { name, dep ->
         kapt dep
     }
-
-    kaptTest deps.annotationProcessors.daggerCompiler
 }
 
 iCappsBuildConfig {

@@ -3,6 +3,7 @@ package com.icapps.template.viewmodel
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.Lifecycle
+import com.icapps.architecture.annotation.GenerateViewModelInjector
 import com.icapps.architecture.arch.BaseViewModel
 import com.icapps.architecture.utils.logging.logError
 import com.icapps.template.R
@@ -15,6 +16,7 @@ import javax.inject.Inject
  * @author maartenvangiel
  * @version 1
  */
+@GenerateViewModelInjector
 class ExampleViewModel @Inject constructor(private val exampleRepository: ExampleRepository) : BaseViewModel() {
 
     val loading = ObservableBoolean()
