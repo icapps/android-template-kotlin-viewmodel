@@ -1,15 +1,43 @@
-autoCorrect: false
-failFast: false
-
 build:
-  warningThreshold: 1
-  failThreshold: 1
+  maxIssues: 0
+  excludeCorrectable: false
   weights:
-    complexity: 2
-    formatting: 1
-    LongParameterList: 1
-    comments: 0.5
-    EmptyFunctionBlock: 0
+  # complexity: 2
+  # LongParameterList: 1
+  # style: 1
+  # comments: 1
+
+config:
+  validation: true
+  warningsAsErrors: false
+  # when writing own rules with new properties, exclude the property path e.g.: 'my_rule_set,.*>.*>[my_property]'
+  excludes: ''
+
+processors:
+  active: true
+  exclude:
+    - 'DetektProgressListener'
+  # - 'FunctionCountProcessor'
+  # - 'PropertyCountProcessor'
+  # - 'ClassCountProcessor'
+  # - 'PackageCountProcessor'
+  # - 'KtFileCountProcessor'
+
+console-reports:
+  active: true
+  exclude:
+    - 'ProjectStatisticsReport'
+    - 'ComplexityReport'
+    - 'NotificationReport'
+    #  - 'FindingsReport'
+    - 'FileBasedFindingsReport'
+
+output-reports:
+  active: true
+  exclude:
+  # - 'TxtOutputReport'
+  # - 'XmlOutputReport'
+  # - 'HtmlOutputReport'
 
 potential-bugs:
   active: true
@@ -45,100 +73,359 @@ empty-blocks:
 
 complexity:
   active: true
-  LongMethod:
-    threshold: 30
-  LongParameterList:
-    threshold: 5
-  LargeClass:
-    threshold: 300
-  ComplexMethod:
-    threshold: 10
-  TooManyFunctions:
-    threshold: 15
   ComplexCondition:
-    threshold: 3
+    active: true
+    threshold: 4
+  ComplexInterface:
+    active: false
+    threshold: 10
+    includeStaticDeclarations: false
+    includePrivateDeclarations: false
+  ComplexMethod:
+    active: true
+    threshold: 15
+    ignoreSingleWhenExpression: false
+    ignoreSimpleWhenEntries: false
+    ignoreNestingFunctions: false
+    nestingFunctions: [ run, let, apply, with, also, use, forEach, isNotNull, ifNull ]
   LabeledExpression:
     active: false
-
-code-smell:
-  active: true
-  FeatureEnvy:
-    threshold: 0.5
-    weight: 0.45
-    base: 0.5
-  NoDocOverPublicClass:
+    ignoredLabels: [ ]
+  LargeClass:
+    active: true
+    threshold: 600
+  LongMethod:
+    active: true
+    threshold: 60
+  LongParameterList:
+    active: true
+    functionThreshold: 6
+    constructorThreshold: 7
+    ignoreDefaultParameters: false
+    ignoreDataClasses: true
+    ignoreAnnotated: [ "Inject" ]
+  MethodOverloading:
     active: false
-  EmptyFunctionBlock:
-    weight: 0
-    base: 0
+    threshold: 6
+  NestedBlockDepth:
+    active: true
+    threshold: 4
+  ReplaceSafeCallChainWithRun:
+    active: false
+  StringLiteralDuplication:
+    active: false
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
+    threshold: 3
+    ignoreAnnotation: true
+    excludeStringsWithLessThan5Characters: true
+    ignoreStringsRegex: '$^'
+  TooManyFunctions:
+    active: true
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
+    thresholdInFiles: 30
+    thresholdInClasses: 15
+    thresholdInInterfaces: 11
+    thresholdInObjects: 11
+    thresholdInEnums: 11
+    ignoreDeprecated: false
+    ignorePrivate: false
+    ignoreOverridden: false
 
 formatting:
   active: true
-  useTabs: true
+  android: false
+  autoCorrect: true
+  AnnotationOnSeparateLine:
+    active: false
+    autoCorrect: true
+  AnnotationSpacing:
+    active: false
+    autoCorrect: true
+  ArgumentListWrapping:
+    active: false
+    autoCorrect: true
+  ChainWrapping:
+    active: true
+    autoCorrect: true
+  CommentSpacing:
+    active: true
+    autoCorrect: true
+  EnumEntryNameCase:
+    active: false
+    autoCorrect: true
+  Filename:
+    active: true
+  FinalNewline:
+    active: true
+    autoCorrect: true
+    insertFinalNewLine: true
+  ImportOrdering:
+    active: false
+    autoCorrect: true
+    layout: 'idea'
   Indentation:
     active: false
+    autoCorrect: true
     indentSize: 4
-  ConsecutiveBlankLines:
+    continuationIndentSize: 4
+  MaximumLineLength:
     active: true
-  MultipleSpaces:
+    maxLineLength: 120
+  ModifierOrdering:
     active: true
-  SpacingAfterComma:
+    autoCorrect: true
+  MultiLineIfElse:
     active: true
-  SpacingAfterKeyword:
+    autoCorrect: true
+  NoBlankLineBeforeRbrace:
     active: true
+    autoCorrect: true
+  NoConsecutiveBlankLines:
+    active: true
+    autoCorrect: true
+  NoEmptyClassBody:
+    active: true
+    autoCorrect: true
+  NoEmptyFirstLineInMethodBlock:
+    active: false
+    autoCorrect: true
+  NoLineBreakAfterElse:
+    active: true
+    autoCorrect: true
+  NoLineBreakBeforeAssignment:
+    active: true
+    autoCorrect: true
+  NoMultipleSpaces:
+    active: true
+    autoCorrect: true
+  NoSemicolons:
+    active: true
+    autoCorrect: true
+  NoTrailingSpaces:
+    active: true
+    autoCorrect: true
+  NoUnitReturn:
+    active: true
+    autoCorrect: true
+  NoUnusedImports:
+    active: true
+    autoCorrect: true
+  NoWildcardImports:
+    active: true
+  PackageName:
+    active: true
+    autoCorrect: true
+  ParameterListWrapping:
+    active: true
+    autoCorrect: true
+    indentSize: 4
   SpacingAroundColon:
     active: true
-  SpacingAroundCurlyBraces:
+    autoCorrect: true
+  SpacingAroundComma:
     active: true
-  SpacingAroundOperator:
+    autoCorrect: true
+  SpacingAroundCurly:
     active: true
-  TrailingSpaces:
+    autoCorrect: true
+  SpacingAroundDot:
     active: true
-  UnusedImports:
-    active: true
-  OptionalSemicolon:
-    active: true
-  OptionalUnit:
-    active: true
-  ExpressionBodySyntax:
+    autoCorrect: true
+  SpacingAroundDoubleColon:
     active: false
-  ExpressionBodySyntaxLineBreaks:
+    autoCorrect: true
+  SpacingAroundKeyword:
+    active: true
+    autoCorrect: true
+  SpacingAroundOperators:
+    active: true
+    autoCorrect: true
+  SpacingAroundParens:
+    active: true
+    autoCorrect: true
+  SpacingAroundRangeOperator:
+    active: true
+    autoCorrect: true
+  SpacingBetweenDeclarationsWithAnnotations:
     active: false
+    autoCorrect: true
+  SpacingBetweenDeclarationsWithComments:
+    active: false
+    autoCorrect: true
+  StringTemplate:
+    active: true
+    autoCorrect: true
 
 style:
   active: true
-  WildcardImport:
+  ClassOrdering:
+    active: false
+  CollapsibleIfStatements:
+    active: false
+  DataClassContainsFunctions:
+    active: false
+    conversionFunctionPrefix: 'to'
+  DataClassShouldBeImmutable:
+    active: false
+  EqualsNullCall:
     active: true
-  ModifierOrder:
+  EqualsOnSignatureLine:
+    active: false
+  ExplicitCollectionElementAccessMethod:
+    active: false
+  ExplicitItLambdaParameter:
+    active: false
+  ExpressionBodySyntax:
+    active: false
+    includeLineWrapping: false
+  ForbiddenComment:
     active: true
-  NamingConventionViolation:
+    values: [ 'TODO:', 'FIXME:', 'STOPSHIP:' ]
+    allowedPatterns: ''
+  ForbiddenImport:
+    active: false
+    imports: [ ]
+    forbiddenPatterns: ''
+  ForbiddenMethodCall:
+    active: false
+    methods: [ 'kotlin.io.println', 'kotlin.io.print' ]
+  ForbiddenPublicDataClass:
+    active: false
+    ignorePackages: [ '*.internal', '*.internal.*' ]
+  ForbiddenVoid:
+    active: false
+    ignoreOverridden: false
+    ignoreUsageInGenerics: false
+  FunctionOnlyReturningConstant:
     active: true
-    variablePattern: '^(_)?[a-z$][a-zA-Z$0-9]*$'
-    constantPattern: '^([A-Z_]*|serialVersionUID)$'
-    methodPattern: '^[a-z$][a-zA-Z$0-9]*$'
-    classPattern: '[A-Z$][a-zA-Z$]*'
-    enumEntryPattern: '^[A-Z$][a-zA-Z_$]*$'
+    ignoreOverridableFunction: true
+    excludedFunctions: 'describeContents'
+    excludeAnnotatedFunction: [ 'dagger.Provides' ]
+  LibraryCodeMustSpecifyReturnType:
+    active: true
+  LibraryEntitiesShouldNotBePublic:
+    active: false
+  LoopWithTooManyJumpStatements:
+    active: true
+    maxJumpCount: 1
+  MagicNumber:
+    active: true
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
+    ignoreNumbers: [ '-1', '0', '1', '2' ]
+    ignoreHashCodeFunction: true
+    ignorePropertyDeclaration: false
+    ignoreLocalVariableDeclaration: false
+    ignoreConstantDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
+    ignoreAnnotation: false
+    ignoreNamedArgument: true
+    ignoreEnums: false
+    ignoreRanges: false
+  MandatoryBracesIfStatements:
+    active: false
+  MandatoryBracesLoops:
+    active: false
   MaxLineLength:
     active: true
     maxLineLength: 180
+    excludePackageStatements: true
+    excludeImportStatements: true
+    excludeCommentStatements: true
+  MayBeConst:
+    active: true
+  ModifierOrder:
+    active: true
+  NestedClassesVisibility:
+    active: false
   NewLineAtEndOfFile:
+    active: false
+  NoTabs:
+    active: false
+  OptionalAbstractKeyword:
+    active: true
+  OptionalUnit:
+    active: false
+  OptionalWhenBraces:
+    active: false
+  PreferToOverPairSyntax:
+    active: false
+  ProtectedMemberInFinalClass:
+    active: true
+  RedundantExplicitType:
+    active: false
+  RedundantVisibilityModifierRule:
     active: false
   ReturnCount:
     active: true
-    max: 6
-  ForbiddenComment:
-    active: true
-    values: 'STOPSHIP'
-  MagicNumber:
-    active: true
-    ignoreNumbers: '-1,0,1,2'
-    ignoreHashCodeFunction: false
-    ignorePropertyDeclaration: false
-    ignoreAnnotation: false
+    max: 4
+    excludedFunctions: 'equals'
+    excludeLabeled: false
+    excludeReturnFromLambda: true
+    excludeGuardClauses: false
   SafeCast:
     active: true
-  ExpressionBodySyntax:
+  SerialVersionUIDInSerializableClass:
     active: false
+  SpacingBetweenPackageAndImports:
+    active: false
+  ThrowsCount:
+    active: true
+    max: 2
+  TrailingWhitespace:
+    active: false
+  UnderscoresInNumericLiterals:
+    active: false
+    acceptableDecimalLength: 5
+  UnnecessaryAbstractClass:
+    active: true
+    excludeAnnotatedClasses: [ 'dagger.Module' ]
+  UnnecessaryAnnotationUseSiteTarget:
+    active: false
+  UnnecessaryApply:
+    active: false
+  UnnecessaryInheritance:
+    active: true
+  UnnecessaryLet:
+    active: false
+  UnnecessaryParentheses:
+    active: false
+  UntilInsteadOfRangeTo:
+    active: false
+  UnusedImports:
+    active: false
+  UnusedPrivateClass:
+    active: true
+  UnusedPrivateMember:
+    active: false
+    allowedNames: '(_|ignored|expected|serialVersionUID)'
+  UseArrayLiteralsInAnnotations:
+    active: false
+  UseCheckNotNull:
+    active: false
+  UseCheckOrError:
+    active: false
+  UseDataClass:
+    active: false
+    excludeAnnotatedClasses: [ ]
+    allowVars: false
+  UseEmptyCounterpart:
+    active: false
+  UseIfInsteadOfWhen:
+    active: false
+  UseRequire:
+    active: false
+  UseRequireNotNull:
+    active: false
+  UselessCallOnNotNull:
+    active: true
+  UtilityClassWithPublicConstructor:
+    active: true
+  VarCouldBeVal:
+    active: false
+  WildcardImport:
+    active: true
+    excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
+    excludeImports: [ 'java.util.*', 'kotlinx.android.synthetic.*' ]
 
 naming:
   active: true

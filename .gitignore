@@ -10,3 +10,5 @@
 .externalNativeBuild
 app/reports
 misc.xml
+.idea/*
+!.idea/codeStyles/*
