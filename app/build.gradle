@@ -23,8 +23,8 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
     compileOptions {
@@ -60,7 +60,6 @@ dependencies {
 iCappsBuildConfig {
     detekt {
         input = files("src/main/java")                                  // Sources folder
-        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"                  // Files that match filter will not be tested
         config = files("$projectDir/../codecheck/detekt-config.yml")    // Detekt config that will be used
     }
     appCenter {
